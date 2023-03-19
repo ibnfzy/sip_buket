@@ -31,6 +31,32 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+$routes->group('Auth', ['namespace' => 'App\Controllers'], static function ($routes) {
+    $routes->get('Admin', 'AdminLogin::index');
+    $routes->post('Admin', 'AdminLogin::auth');
+    $routes->get('Admin/Destroy', 'AdminLogin::logout');
+    $routes->get('Pemilik', 'AdminLogin::index');
+    $routes->post('Pemilik', 'AdminLogin::auth');
+    $routes->get('Pemilik/Destroy', 'AdminLogin::logout');
+    $routes->get('Customer', 'CustomerLogin::index');
+    $routes->post('Customer', 'CustomerLogin::auth');
+    $routes->get('Customer/Destroy', 'CustomerLogin::logout');
+    $routes->get('Customer/Registration', 'CustomerLogin::registration');
+    $routes->post('Customer/Registration', 'CustomerLogin::signup');
+});
+
+$routes->group('AdminPanel', ['namespace' => 'App\Controllers'], static function ($routes) {
+    $routes->get('/' . 'AdminController::index');
+});
+
+$routes->group('PemilikPanel', ['namespace' => 'App\Controllers'], static function ($routes) {
+    $routes->get('/' . 'PemilikController::index');
+});
+
+$routes->group('CustomerPanel', ['namespace' => 'App\Controllers'], static function ($routes) {
+    $routes->get('/' . 'CustController::index');
+});
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

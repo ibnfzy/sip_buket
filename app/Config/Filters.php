@@ -2,6 +2,9 @@
 
 namespace Config;
 
+use App\Filters\AdminAuth;
+use App\Filters\CustomerAuth;
+use App\Filters\PemilikAuth;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -21,6 +24,9 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'adminauth'     => AdminAuth::class,
+        'custauth'      => CustomerAuth::class,
+        'pemilikauth'   => PemilikAuth::class
     ];
 
     /**
@@ -60,5 +66,24 @@ class Filters extends BaseConfig
      * Example:
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
-    public array $filters = [];
+    public array $filters = [
+        'adminauth' => [
+            'before' => [
+                'AdminPanel',
+                'AdminPanel/*',
+            ],
+        ],
+        'custauth'  => [
+            'before' => [
+                'CustomerPanel',
+                'CustomerPanel/*',
+            ],
+        ],
+        'pemilikauth' => [
+            'before' => [
+                'PemilikPanel',
+                'PemilikPanel/*',
+            ]
+        ]
+    ];
 }
