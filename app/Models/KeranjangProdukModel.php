@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class KeranjangBuketModel extends Model
+class KeranjangProdukModel extends Model
 {
-    protected $table            = 'keranjang_buket';
-    protected $primaryKey       = 'id_keranjang_buket';
+    protected $table            = 'keranjang_produk';
+    protected $primaryKey       = 'id_keranjang_produk';
     protected $allowedFields    = [
         'id_customer',
         'id_customer_voucher',

@@ -9,7 +9,7 @@ class PenilaianModel extends Model
     protected $table            = 'penilaian';
     protected $primaryKey       = 'id_penilaian';
     protected $allowedFields    = [
-        'id_buket',
+        'id_produk',
         'id_customer',
         'isi_penilaian',
         'bintang',

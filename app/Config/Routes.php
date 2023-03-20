@@ -47,6 +47,10 @@ $routes->group('Auth', ['namespace' => 'App\Controllers'], static function ($rou
 
 $routes->group('AdminPanel', ['namespace' => 'App\Controllers'], static function ($routes) {
     $routes->get('/' . 'AdminController::index');
+    $routes->resource('Produk');
+    $routes->resource('KategoriProduk');
+    $routes->resource('Customer');
+    $routes->resource('Corousel');
 });
 
 $routes->group('PemilikPanel', ['namespace' => 'App\Controllers'], static function ($routes) {
