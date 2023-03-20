@@ -46,7 +46,7 @@ $routes->group('Auth', ['namespace' => 'App\Controllers'], static function ($rou
 });
 
 $routes->group('AdminPanel', ['namespace' => 'App\Controllers'], static function ($routes) {
-    $routes->get('/' . 'AdminController::index');
+    $routes->get('/', 'AdminController::index');
     $routes->resource('Produk');
     $routes->resource('KategoriProduk');
     $routes->resource('Customer');
@@ -54,11 +54,11 @@ $routes->group('AdminPanel', ['namespace' => 'App\Controllers'], static function
 });
 
 $routes->group('PemilikPanel', ['namespace' => 'App\Controllers'], static function ($routes) {
-    $routes->get('/' . 'PemilikController::index');
+    $routes->get('/', 'PemilikController::index');
 });
 
 $routes->group('CustomerPanel', ['namespace' => 'App\Controllers'], static function ($routes) {
-    $routes->get('/' . 'CustController::index');
+    $routes->get('/', 'CustController::index');
 });
 
 /*
