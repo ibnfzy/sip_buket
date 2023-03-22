@@ -44,6 +44,12 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+  <style>
+    .pagination .active a {
+      background-color: #ff6666;
+      color: white !important;
+    }
+  </style>
 
 </head>
 
