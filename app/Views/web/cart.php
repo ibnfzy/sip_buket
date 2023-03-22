@@ -2,20 +2,8 @@
 
 <?= $this->section('content'); ?>
 <!-- catg header banner section -->
-<section id="aa-catg-head-banner">
-  <img src="img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
-  <div class="aa-catg-head-banner-area">
-    <div class="container">
-      <div class="aa-catg-head-banner-content">
-        <h2>Cart Page</h2>
-        <ol class="breadcrumb">
-          <li><a href="index.html">Home</a></li>
-          <li class="active">Cart</li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</section>
+<?php $cart = \Config\Services::cart(); ?>
+
 <!-- / catg header banner section -->
 
 <!-- Cart view section -->
@@ -30,51 +18,42 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th></th>
-                      <th></th>
-                      <th>Product</th>
-                      <th>Price</th>
-                      <th>Quantity</th>
+                      <th>~</th>
+                      <th>~</th>
+                      <th>Produk</th>
+                      <th>Stok</th>
+                      <th>Harga</th>
+                      <th>Kuantitas</th>
                       <th>Total</th>
                     </tr>
                   </thead>
                   <tbody>
+                    <?php if ($cart->contents() == null) : ?>
+                    <td colspan="7">Keranjang Kosong</td>
+                    <?php endif;
+                    $total = [];
+                    $i = 1; ?>
+                    <?php foreach ($cart->contents() as $data) : ?>
                     <tr>
-                      <td><a class="remove" href="#">
+                      <td><a class="remove" href="<?= base_url('remove_item/' . $data['rowid']); ?>">
                           <fa class="fa fa-close"></fa>
                         </a></td>
-                      <td><a href="#"><img src="img/man/polo-shirt-1.png" alt="img"></a></td>
-                      <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                      <td>$250</td>
-                      <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                      <td>$250</td>
+                      <input type="hidden" name="rowid[<?= $i; ?>]" value="<?= $data['rowid']; ?>">
+                      <input type="hidden" name="stok[<?= $i; ?>]" value="<?= $data['stok']; ?>">
+                      <td><a href="#"><img width="100" src="<?= base_url('uploads/' . $data['gambar']); ?>"
+                            alt="img"></a></td>
+                      <td><a class="aa-cart-title" href="#"><?= $data['name']; ?></a></td>
+                      <td><?= $data['stok']; ?></td>
+                      <td>Rp. <?= $data['price']; ?></td>
+                      <td><input class="aa-cart-quantity" type="number" name="qtybutton[<?= $i ?>]"
+                          value="<?= $data['qty']; ?>"></td>
+                      <td>Rp. <?= $subTotal =  $data['price'] * $data['qty']; ?></td><?php $total[] = $subTotal; ?>
                     </tr>
+                    <?php endforeach ?>
+
                     <tr>
-                      <td><a class="remove" href="#">
-                          <fa class="fa fa-close"></fa>
-                        </a></td>
-                      <td><a href="#"><img src="img/man/polo-shirt-2.png" alt="img"></a></td>
-                      <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                      <td>$150</td>
-                      <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                      <td>$150</td>
-                    </tr>
-                    <tr>
-                      <td><a class="remove" href="#">
-                          <fa class="fa fa-close"></fa>
-                        </a></td>
-                      <td><a href="#"><img src="img/man/polo-shirt-3.png" alt="img"></a></td>
-                      <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                      <td>$50</td>
-                      <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                      <td>$50</td>
-                    </tr>
-                    <tr>
-                      <td colspan="6" class="aa-cart-view-bottom">
-                        <div class="aa-cart-coupon">
-                          <input class="aa-coupon-code" type="text" placeholder="Coupon">
-                          <input class="aa-cart-view-btn" type="submit" value="Apply Coupon">
-                        </div>
+                      <td colspan="7" class="aa-cart-view-bottom">
+
                         <input class="aa-cart-view-btn" type="submit" value="Update Cart">
                       </td>
                     </tr>
@@ -84,20 +63,20 @@
             </form>
             <!-- Cart Total view -->
             <div class="cart-view-total">
-              <h4>Cart Totals</h4>
+              <h4>Total Keranjang</h4>
               <table class="aa-totals-table">
                 <tbody>
                   <tr>
                     <th>Subtotal</th>
-                    <td>$450</td>
+                    <td>Rp. <?= $subTotalx = array_sum($total); ?></td>
                   </tr>
                   <tr>
-                    <th>Total</th>
-                    <td>$450</td>
+                    <th>Total (+Pengiriman Rp. <?= $data['biaya_ongkir']; ?>)</th>
+                    <td>Rp. <?= $total = $subTotalx + $data['biaya_ongkir']; ?></td>
                   </tr>
                 </tbody>
               </table>
-              <a href="#" class="aa-cart-view-btn">Proced to Checkout</a>
+              <a href="#" class="aa-cart-view-btn">Proses Checkout</a>
             </div>
           </div>
         </div>

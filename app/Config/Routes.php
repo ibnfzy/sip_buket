@@ -31,7 +31,12 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('/Produk', 'Home::katalog');
+$routes->get('/Keranjang', 'Home::keranjang');
 $routes->get('/Produk/(:any)', 'Home::detail/$1');
+$routes->post('add_item', 'Home::add_item');
+$routes->get('remove_item/(:any)', 'Home::remove_item/$1');
+$routes->get('clear_cart', 'Home::clear_cart');
+$routes->post('update_cart', 'Home::update_cart');
 
 $routes->group('Auth', ['namespace' => 'App\Controllers'], static function ($routes) {
     $routes->get('Admin', 'AdminLogin::index');
