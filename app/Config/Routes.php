@@ -66,6 +66,11 @@ $routes->group('PemilikPanel', ['namespace' => 'App\Controllers'], static functi
 
 $routes->group('CustomerPanel', ['namespace' => 'App\Controllers'], static function ($routes) {
     $routes->get('/', 'CustController::index');
+    $routes->get('checkout', 'CustController::checkout');
+    $routes->get('informasi', 'CustController::informasi');
+    $routes->get('invoice/(:any)', 'CustController::invoice/$1');
+    $routes->post('upload/(:any)', 'CustController::upload/$1');
+    $routes->post('informasi/(:any)', 'CustController::update_informasi/$1');
 });
 
 /*
