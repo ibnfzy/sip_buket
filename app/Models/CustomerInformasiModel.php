@@ -12,5 +12,7 @@ class CustomerInformasiModel extends Model
         'id_customer',
         'alamat',
         'nomor_hp',
+        'status_customer',
+        'kota_domisili',
     ];
 }

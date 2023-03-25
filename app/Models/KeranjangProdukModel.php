@@ -13,7 +13,6 @@ class KeranjangProdukModel extends Model
         'id_customer_voucher',
         'rowid',
         'total_items',
-        'potongan',
         'total_bayar',
         'bukti_bayar',
         'status_bayar',
