@@ -26,7 +26,7 @@ class PemilikAuth implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if (!session()->get('logged_in_pemilik')) {
-            return redirect()->to('Auth/Admin');
+            return redirect()->to(base_url('Auth/Pemilik'));
         }
     }
 

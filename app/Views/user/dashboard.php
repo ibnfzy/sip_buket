@@ -8,13 +8,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Blank Page</h1>
-        </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Blank Page</li>
-          </ol>
+          <h1>Data Customer</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -24,32 +18,67 @@
   <section class="content">
 
     <!-- Default box -->
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Title</h3>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3 col-sm-6 col-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
 
-        <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-            <i class="fas fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-            <i class="fas fa-times"></i>
-          </button>
+            <div class="info-box-content">
+              <span class="info-box-text">Messages</span>
+              <span class="info-box-number">1,410</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
         </div>
-      </div>
-      <div class="card-body">
-        Start creating your amazing application!
-      </div>
-      <!-- /.card-body -->
-      <div class="card-footer">
-        Footer
-      </div>
-      <!-- /.card-footer-->
-    </div>
-    <!-- /.card -->
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
 
-  </section>
-  <!-- /.content -->
+            <div class="info-box-content">
+              <span class="info-box-text">Bookmarks</span>
+              <span class="info-box-number">410</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Uploads</span>
+              <span class="info-box-number">13,648</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Likes</span>
+              <span class="info-box-number">93,139</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+      </div>
+    </div>
+</div>
+<!-- /.card -->
+
+</section>
+<!-- /.content -->
 </div>
 
 <?= $this->endSection(); ?>

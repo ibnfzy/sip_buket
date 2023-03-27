@@ -45,11 +45,11 @@ $routes->group('Auth', ['namespace' => 'App\Controllers'], static function ($rou
     $routes->get('Pemilik', 'AdminLogin::index');
     $routes->post('Pemilik', 'AdminLogin::auth');
     $routes->get('Pemilik/Destroy', 'AdminLogin::logout');
-    $routes->get('Customer', 'CustomerLogin::index');
-    $routes->post('Customer', 'CustomerLogin::auth');
-    $routes->get('Customer/Destroy', 'CustomerLogin::logout');
-    $routes->get('Customer/Registration', 'CustomerLogin::registration');
-    $routes->post('Customer/Registration', 'CustomerLogin::signup');
+    $routes->get('Customer', 'CustLogin::index');
+    $routes->post('Customer', 'CustLogin::auth');
+    $routes->get('Customer/Destroy', 'CustLogin::logout');
+    $routes->get('Customer/Registration', 'CustLogin::registration');
+    $routes->post('Customer/Registration', 'CustLogin::signup');
 });
 
 $routes->group('AdminPanel', ['namespace' => 'App\Controllers'], static function ($routes) {
@@ -58,6 +58,11 @@ $routes->group('AdminPanel', ['namespace' => 'App\Controllers'], static function
     $routes->resource('KategoriProduk');
     $routes->resource('Customer');
     $routes->resource('Corousel');
+    $routes->get('TransaksiCustomer', 'Transaksi::index');
+    $routes->get('TransaksiCustomer/(:any)', 'Transaksi::show/$1');
+    $routes->get('WebSetting', 'AdminController::setting/$1');
+    $routes->post('validasi_bukti_bayar/(:any)', 'Transaksi::validasi_bb/$1');
+    $routes->post('update_kirim/(:any)', 'Transaksi::update_kirim/$1');
 });
 
 $routes->group('PemilikPanel', ['namespace' => 'App\Controllers'], static function ($routes) {
@@ -68,8 +73,10 @@ $routes->group('CustomerPanel', ['namespace' => 'App\Controllers'], static funct
     $routes->get('/', 'CustController::index');
     $routes->get('checkout', 'CustController::checkout');
     $routes->get('informasi', 'CustController::informasi');
+    $routes->get('transaksi', 'CustController::transaksi');
     $routes->get('invoice/(:any)', 'CustController::invoice/$1');
     $routes->post('upload/(:any)', 'CustController::upload/$1');
+    $routes->post('update-selesai', 'CustController::updateStatusSelesai');
     $routes->post('informasi/(:any)', 'CustController::update_informasi/$1');
 });
 

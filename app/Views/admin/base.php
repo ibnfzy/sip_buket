@@ -18,6 +18,8 @@
   <script src="<?= base_url(); ?>/plugins/chart.js/Chart.min.js"></script>
 
   <!-- DataTables -->
+  <!-- Ekko Lightbox -->
+  <link rel="stylesheet" href="<?= base_url(); ?>/plugins/ekko-lightbox/ekko-lightbox.css">
   <link rel="stylesheet" href="<?= base_url(); ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="<?= base_url(); ?>/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="<?= base_url(); ?>/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
@@ -88,7 +90,8 @@
 
   <script src="<?= base_url('/'); ?>/toastr/build/toastr.min.js"></script>
 
-
+  <!-- Ekko Lightbox -->
+  <script src="<?= base_url('/'); ?>/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
   <!-- DataTables  & Plugins -->
   <script src="<?= base_url(); ?>/plugins/datatables/jquery.dataTables.min.js"></script>
   <script src="<?= base_url(); ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

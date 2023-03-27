@@ -7,8 +7,7 @@
   <title>AdminLTE 3 | Registration Page</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?= base_url(''); ?>/plugins/fontawesome-free/css/all.min.css">
@@ -25,7 +24,7 @@
   <div class="register-box">
     <div class="register-logo">
 
-      <a href="<?= base_url('/'); ?>"><b>Hadifa </b>Gallery</a>
+      <a href="<?= base_url('/'); ?>">💐 <b>Hadifa </b>Gallery</a>
     </div>
 
     <div class="card">
@@ -66,16 +65,14 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-8">
-
-            </div>
             <!-- /.col -->
-            <div class="col-4">
+            <div class="col-12">
               <button type="submit" class="btn btn-primary btn-block">Daftar sebagai customer</button>
             </div>
             <!-- /.col -->
           </div>
         </form>
+        <hr>
 
         <a href="<?= base_url('Auth/Customer'); ?>" class="text-center">Sudah punya akun? silahkan login disini!</a>
       </div>
@@ -95,22 +92,22 @@
   <?= $this->renderSection('script'); ?>
 
   <script>
-  toastr.options = {
-    "closeButton": false,
-    "debug": false,
-    "newestOnTop": true,
-    "progressBar": true,
-    "positionClass": "toast-top-right",
-    "preventDuplicates": false,
-    "showDuration": "600",
-    "hideDuration": "1000",
-    "timeOut": "5000",
-    "extendedTimeOut": "1000",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
-  }
+    toastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": true,
+      "progressBar": true,
+      "positionClass": "toast-top-right",
+      "preventDuplicates": false,
+      "showDuration": "600",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
   </script>
 
   <?php ?>

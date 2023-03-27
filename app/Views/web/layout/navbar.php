@@ -33,7 +33,7 @@
             <!-- / header top left -->
             <div class="aa-header-top-right">
               <ul class="aa-head-top-nav-right">
-                <li><a href="account.html">Customer Panel</a></li>
+                <li><a href="<?= base_url('CustomerPanel'); ?>">Customer Panel</a></li>
               </ul>
             </div>
           </div>
@@ -65,7 +65,7 @@
               <a class="aa-cart-link" href="<?= base_url('Keranjang'); ?>">
                 <span class="fa fa-shopping-basket"></span>
                 <span class="aa-cart-title">Keranjang</span>
-                <span class="aa-cart-notify"><?= $cart->totalItems() ;?></span>
+                <span class="aa-cart-notify"><?= $cart->totalItems(); ?></span>
               </a>
             </div>
             <!-- / cart box -->
