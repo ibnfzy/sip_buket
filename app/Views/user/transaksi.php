@@ -98,14 +98,14 @@
               <td>
                 <?php if ($item['status_bayar'] == 'Dalam Pengiriman') : ?>
                 <!-- TRUE -->
-                <a href="#" onclick="statusDiterima('<?= $item['id_keranjang'] ?>')" type="button"
-                  title="Ubah Status diterima" class="btn btn-info text-white"><i class="far fa-check"></i></i>
+                <a href="javascript::void" onclick="statusDiterima('<?= $item['id_keranjang_produk'] ?>')" type="button"
+                  title="Ubah Status diterima" class="btn btn-info text-white"><i class="fas fa-check"></i></i>
                 </a>
                 <?php endif ?>
                 <?php if ($item['status_bayar'] == 'Selesai') : ?>
                 <!-- TRUE -->
-                <a href="#" type="button" title="Berikan testimoni" style="background-color: darkblue;"
-                  class="btn btn-blue text-white"><i class="far fa-star"></i></a>
+                <a href="<?= base_url('CustomerPanel/Review/new') ;?>" type="button" title="Berikan testimoni"
+                  style="background-color: darkblue;" class="btn btn-blue text-white"><i class="fas fa-star"></i></a>
                 <?php endif ?>
                 <a href="<?= base_url('CustomerPanel/invoice/' . $item['rowid']); ?>" type="button"
                   title="Lihat Invoice" class="btn bg-pink text-white"><i class="fas fa-receipt"></i></a>
@@ -188,7 +188,7 @@ const statusDiterima = (rowid) => {
           method: "POST",
           data: {
             'status_bayar': 'Selesai',
-            'id_keranjang': rowid
+            'keranjang_produk': rowid
           },
           url: "update-selesai",
           success: function(response) {

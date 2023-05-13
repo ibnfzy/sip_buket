@@ -54,7 +54,7 @@
               <!-- Text based logo -->
               <a href="index.html">
 
-                <p>💐 <strong>Hadifa</strong> Gallery</p>
+                <p>💐 <strong>Hadinafa</strong> Gallery</p>
               </a>
               <!-- img based logo -->
               <!-- <a href="index.html"><img src="<?= base_url(''); ?>/img/logo.jpg" alt="logo img"></a> -->

@@ -34,8 +34,8 @@
             <tr>
               <th>~</th>
               <th>Nama Customer</th>
-              <th>Total Produk</th>
               <th>Free Item</th>
+              <th>Total Produk</th>
               <th>Total Bayar</th>
               <th>Status Bayar</th>
               <th>~</th>
@@ -44,11 +44,11 @@
           <tbody>
             <?php
             foreach ($keranjang as $item) : ?>
-              <?php $db = \Config\Database::connect();
+            <?php $db = \Config\Database::connect();
               $customer = $db->table('customer')->where('id_customer', $item['id_customer'])->get()->getResultArray();
               // dd($customer);
               ?>
-              <?php
+            <?php
               switch ($item['status_bayar']) {
                 case 'Menunggu Bukti Bayar':
                   $bg = 'bg-dark';
@@ -78,25 +78,30 @@
                   $bg = '';
                   break;
               }; ?>
-              <tr>
-                <td><?= $item['id_keranjang_produk']; ?></td>
-                <?php foreach ($customer as $data) : ?>
-                  <td><?= $data['fullname']; ?></td>
-                <?php endforeach; ?>
-                <td><?= $freeitem = ($item['get_free_item'] != 1) ? 'Tidak' : 'Ya'; ?>%</td>
-                <td><?= $item['total_items']; ?></td>
-                <td>Rp. <?= $item['total_bayar']; ?></td>
-                <td><span class="badge <?= $bg; ?>"><?= $item['status_bayar'] ?></span></td>
-                <td>
-                  <div>
-                    <a <?= ($item['status_bayar'] != 'Menunggu Validasi Bukti Bayar') ? 'hidden' : ''; ?> href="<?= base_url('AdminPanel/validasi_bukti_bayar/' . $item['id_keranjang_produk']); ?>" type="button" class="btn btn-info"><i class="fas fa-clipboard-check"></i> Validasi Bukti Bayar</a>
-                    <a <?= ($item['status_bayar'] != 'Diproses') ? 'hidden' : ''; ?> title="Ubah status dalam pengiriman" href="<?= base_url('AdminPanel/update_kirim/' . $item['id_keranjang_produk']); ?>" type="button" class="btn btn-info"><i class="fas fa-truck-loading"></i></a>
-                    <a href="<?= base_url('uploads/' . $item['bukti_bayar']); ?>" class="btn bg-pink" data-toggle="lightbox" data-title="" data-gallery="gallery"><i class="fas fa-file-invoice"></i>
-                      Lihat Bukti Bayar</a>
-                    &nbsp;
-                  </div>
-                </td>
-              </tr>
+            <tr>
+              <td><?= $item['id_keranjang_produk']; ?></td>
+              <?php foreach ($customer as $data) : ?>
+              <td><?= $data['fullname']; ?></td>
+              <?php endforeach; ?>
+              <td><?= $freeitem = ($item['get_free_item'] != 1) ? 'Tidak' : 'Ya'; ?></td>
+              <td><?= $item['total_items']; ?></td>
+              <td>Rp. <?= $item['total_bayar']; ?></td>
+              <td><span class="badge <?= $bg; ?>"><?= $item['status_bayar'] ?></span></td>
+              <td>
+                <div class="btn-group btn-group-sm" role="group">
+                  <a <?= ($item['status_bayar'] != 'Menunggu Validasi Bukti Bayar') ? 'hidden' : ''; ?>
+                    href="<?= base_url('AdminPanel/validasi_bukti_bayar/' . $item['id_keranjang_produk']); ?>"
+                    type="button" class="btn btn-info"><i class="fas fa-clipboard-check"></i> Validasi Bukti Bayar</a>
+                  <a <?= ($item['status_bayar'] != 'Diproses') ? 'hidden' : ''; ?> title="Ubah status dalam pengiriman"
+                    href="<?= base_url('AdminPanel/update_kirim/' . $item['id_keranjang_produk']); ?>" type="button"
+                    class="btn btn-info"><i class="fas fa-truck-loading"></i> Ubah Status Dalam Pengiriman</a>
+                  <a href="<?= base_url('uploads/' . $item['bukti_bayar']); ?>" class="btn bg-pink"
+                    data-toggle="lightbox" data-title="" data-gallery="gallery"><i class="fas fa-file-invoice"></i>
+                    Lihat Bukti Bayar</a>
+                  &nbsp;
+                </div>
+              </td>
+            </tr>
             <?php endforeach; ?>
             </tfoot>
         </table>
@@ -132,19 +137,19 @@
           </thead>
           <tbody>
             <?php foreach ($order as $item) : ?>
-              <tr>
-                <td><?= $item['id_transaksi']; ?></td>
-                <td><?= $item['fullname']; ?></td>
-                <td><?= $item['nama_produk']; ?></td>
-                <td>Rp. <?= $item['total_harga']; ?></td>
-                <td><?= $item['transaksi_datetime']; ?></td>
-                <td>
-                  <div class="btn-group btn-group-lg" role="group">
-                    <!-- <button onclick="deleteData('<?= $item['id_transaksi']; ?>')" type="button" class="btn btn-danger"><i
+            <tr>
+              <td><?= $item['id_transaksi']; ?></td>
+              <td><?= $item['fullname']; ?></td>
+              <td><?= $item['nama_produk']; ?></td>
+              <td>Rp. <?= $item['total_harga']; ?></td>
+              <td><?= $item['transaksi_datetime']; ?></td>
+              <td>
+                <div class="btn-group btn-group-lg" role="group">
+                  <!-- <button onclick="deleteData('<?= $item['id_transaksi']; ?>')" type="button" class="btn btn-danger"><i
                       class="align-middle me-2" data-feather="trash-2"></i></button> -->
-                  </div>
-                </td>
-              </tr>
+                </div>
+              </td>
+            </tr>
             <?php endforeach; ?>
             </tfoot>
         </table>
@@ -166,22 +171,22 @@
 <?= $this->section('script'); ?>
 
 <script>
-  $(function() {
-    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-      event.preventDefault();
-      $(this).ekkoLightbox({
-        alwaysShowClose: true
-      });
+$(function() {
+  $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox({
+      alwaysShowClose: true
     });
+  });
 
-    $('.filter-container').filterizr({
-      gutterPixels: 3
-    });
-    $('.btn[data-filter]').on('click', function() {
-      $('.btn[data-filter]').removeClass('active');
-      $(this).addClass('active');
-    });
-  })
+  $('.filter-container').filterizr({
+    gutterPixels: 3
+  });
+  $('.btn[data-filter]').on('click', function() {
+    $('.btn[data-filter]').removeClass('active');
+    $(this).addClass('active');
+  });
+})
 </script>
 
 <?= $this->endSection(); ?>

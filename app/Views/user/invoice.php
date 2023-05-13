@@ -1,6 +1,8 @@
 <?= $this->extend('user/base'); ?>
 
 <?= $this->section('content'); ?>
+<?php $db = \Config\Database::connect(); ?>
+<?php $get = $db->table('biaya_ongkir')->where('nama_kota', $dataUser['kota_domisili'])->get()->getRowArray(); ?>
 
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -60,7 +62,7 @@
                     Ke Alamat
                     <address>
                       <strong><?= $_SESSION['fullname']; ?></strong><br>
-                      <?= $dataUser['alamat']; ?><br>
+                      <?= $get['nama_kota']; ?>, <?= $dataUser['alamat']; ?><br>
                       Phone: <?= $dataUser['nomor_hp']; ?>
                     </address>
                   </div>
@@ -117,6 +119,8 @@
                   <!-- /.col -->
                   <div class="col-6">
 
+
+
                     <div class="table-responsive">
                       <table class="table">
                         <tr>
@@ -125,12 +129,13 @@
                         </tr>
                         <tr>
                           <th>Biaya Ongkir:</th>
-                          <td>Rp. <?= $dataToko['biaya_ongkir']; ?></td>
+                          <td>Rp. <?= $get['biaya']; ?></td>
                         </tr>
                         <tr>
                           <th>Total yang dibayar:</th>
-                          <td>Rp. <?= $keranjang['total_bayar']; ?>
-                            <?= $node = ($keranjang['total_bayar'] == ($subtotal + $dataToko['biaya_ongkir'])) ? '' : '
+                          <td>Rp.
+                            <?= $total = ($dataUser['status_customer'] == 'Customer Baru') ? $keranjang['total_bayar'] : $keranjang['total_bayar'] + $get['biaya']; ?>
+                            <?= $node = ($total == ($subtotal + $get['biaya'])) ? '' : '
                             <span class="badge bg-success">Free Ongkir</span>'; ?></td>
                         </tr>
                       </table>
@@ -143,8 +148,9 @@
                 <!-- this row will not appear when printing -->
                 <div class="row no-print">
                   <div class="col-12">
-                    <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-                    <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn bg-pink float-right"><i class="far fa-credit-card"></i> Upload Bukti Pembayaran
+                    <button onclick="window.print();" class="btn btn-default"><i class="fas fa-print"></i>
+                      Print</button>
+                    <button <?= ($keranjang['bukti_bayar'] == null) ? '' : 'disabled' ?> data-toggle="modal" data-target="#exampleModal" type="button" class="btn bg-pink float-right"><i class="far fa-credit-card"></i> Upload Bukti Pembayaran
                     </button>
                   </div>
                 </div>

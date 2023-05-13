@@ -20,11 +20,13 @@
                   <a class="aa-product-img" href="<?= base_url('Produk/' . $item['id_produk']); ?>"><img height="300"
                       src="<?= base_url('uploads/' . $item['gambar_produk']); ?>" alt="polo shirt img"></a>
                   <a onclick="add_item('<?= $item['id_produk'] ?>', <?= $item['stok_produk'] ?>)"
-                    class="aa-add-card-btn" href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                    class="aa-add-card-btn" href="javascript::void"><span class="fa fa-shopping-cart"></span>Add To
+                    Cart</a>
                   <figcaption>
                     <h4 class="aa-product-title"><a
                         href="<?= base_url('Produk/' . $item['id_produk']); ?>"><?= $item['nama_produk']; ?></a></h4>
-                    <span class="aa-product-price">Rp. <?= $item['harga_produk']; ?></span>
+                    <span class="aa-product-price">Rp. <?= $item['harga_produk']; ?> - Stok :
+                      <?= $item['stok_produk'] ;?></span>
                     <p class="aa-product-descrip"></p>
                   </figcaption>
                 </figure>

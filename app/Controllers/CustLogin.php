@@ -71,7 +71,7 @@ class CustLogin extends BaseController
 
         $session->destroy();
 
-        return redirect()->to(base_url('Auth/User'));
+        return redirect()->to(base_url('Auth/Customer'));
         // return view('login/user_login');
     }
 
@@ -84,13 +84,13 @@ class CustLogin extends BaseController
     {
         $rules = [
             'fullname' => 'required|min_length[5]|max_length[30]',
-            'username' => 'required|min_length[5]|max_length[16]|is_unique[user.username]',
+            'username' => 'required|min_length[5]|max_length[16]|is_unique[customer.username]',
             'password' => 'required|min_length[5]|max_length[16]',
             'confirmPassword' => 'required|matches[password]'
         ];
 
         if (!$this->validate($rules)) {
-            return redirect()->to(base_url('Auth/User/Registration'))->with('type-status', 'error')
+            return redirect()->to(base_url('Auth/Customer/Registration'))->with('type-status', 'error')
                 ->with('dataMessage', $this->validator->getErrors());
         }
 
@@ -107,19 +107,19 @@ class CustLogin extends BaseController
 
         $getUser = $this->CustomerModel->where('username', $this->request->getPost('username'))->first();
 
-        $dataV = [
-            'id_customer' => $getUser['id_customer'],
-            'poin' => 0
-        ];
+        // $dataV = [
+        //     'id_customer' => $getUser['id_customer'],
+        //     'poin' => 0
+        // ];
 
         $dataInfo = [
             'id_customer' => $getUser['id_customer']
         ];
 
-        $this->db->table('voucher_sistem')->insert($dataV);
-        $this->db->table('user_informasi')->insert($dataInfo);
+        // $this->db->table('voucher_sistem')->insert($dataV);
+        $this->db->table('customer_informasi')->insert($dataInfo);
 
-        return redirect()->to(base_url('Auth/User'))->with('type-status', 'success')
+        return redirect()->to(base_url('Auth/Customer'))->with('type-status', 'success')
             ->with('message', 'Registrasi berhasil, silahkan login untuk memulai session');
     }
 }

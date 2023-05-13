@@ -28,24 +28,16 @@
           </button>
         </div>
       </div>
-      <form action="<?= base_url('AdminPanel/data/' . $data['id_website_setting']); ?>" method="post"
-        enctype="multipart/form-data">
+      <form action="<?= base_url('AdminPanel/data/' . $data['id_website_setting']); ?>" method="post" enctype="multipart/form-data">
         <input type="hidden" name="_method" value="PUT">
         <div class="card-body">
           <div class="form-group">
             <label for="exampleInputEmail1">Alamat Toko</label>
-            <input type="text" name="nama" id="nama" class="form-control" placeholder=""
-              value="<?= $data['alamat_toko']; ?>">
+            <input type="text" name="nama" id="nama" class="form-control" placeholder="" value="<?= $data['alamat_toko']; ?>">
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Kontak Toko</label>
-            <input type="text" name="nama" id="nama" class="form-control" placeholder=""
-              value="<?= $data['kontak_toko']; ?>">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Biaya Ongkir</label>
-            <input type="text" name="nama" id="nama" class="form-control" placeholder=""
-              value="<?= $data['biaya_ongkir']; ?>">
+            <input type="text" name="nama" id="nama" class="form-control" placeholder="" value="<?= $data['kontak_toko']; ?>">
           </div>
         </div>
         <!-- /.card-body -->

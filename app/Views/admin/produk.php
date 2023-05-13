@@ -90,8 +90,8 @@ function deleteData(a) {
     .then((willDelete) => {
       if (willDelete) {
         $.ajax({
-          method: "DELETE",
-          url: "Produk/" + a,
+          method: "GET",
+          url: "ProdukDelete/" + a,
           success: function(response) {
             swal.fire("Data Telah Terhapus", {
               icon: "success",

@@ -4,10 +4,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Registration Page</title>
+  <title>Hadinafa Gallery | Registration Page</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?= base_url(''); ?>/plugins/fontawesome-free/css/all.min.css">
@@ -24,14 +25,14 @@
   <div class="register-box">
     <div class="register-logo">
 
-      <a href="<?= base_url('/'); ?>">💐 <b>Hadifa </b>Gallery</a>
+      <a href="<?= base_url('/'); ?>">💐 <b>Hadinafa </b>Gallery</a>
     </div>
 
     <div class="card">
       <div class="card-body register-card-body">
         <!-- <p class="login-box-msg">Register a new membership</p> -->
 
-        <form action="" method="post">
+        <form action="<?= base_url('Auth/Customer/Registration') ;?>" method="post">
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Full name" name="fullname">
             <div class="input-group-append">
@@ -92,22 +93,22 @@
   <?= $this->renderSection('script'); ?>
 
   <script>
-    toastr.options = {
-      "closeButton": false,
-      "debug": false,
-      "newestOnTop": true,
-      "progressBar": true,
-      "positionClass": "toast-top-right",
-      "preventDuplicates": false,
-      "showDuration": "600",
-      "hideDuration": "1000",
-      "timeOut": "5000",
-      "extendedTimeOut": "1000",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
-    }
+  toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": true,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "showDuration": "600",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
   </script>
 
   <?php ?>

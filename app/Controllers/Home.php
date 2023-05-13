@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\CorouselModel;
 use App\Models\ProdukModel;
 use App\Models\WebsiteSettingModel;
 
@@ -11,6 +12,7 @@ class Home extends BaseController
     protected $db;
     protected $cart;
     protected $web;
+    protected $corousel;
 
     public function __construct()
     {
@@ -18,11 +20,15 @@ class Home extends BaseController
         $this->produkModel = new ProdukModel();
         $this->db = \Config\Database::connect();
         $this->web = new WebsiteSettingModel();
+        $this->corousel = new CorouselModel();
     }
 
     public function index()
     {
-        return view('web/home');
+        return view('web/home', [
+            'cr' => $this->corousel->findAll(),
+            'rekom' => $this->produkModel->orderBy('rand()')->findAll(3)
+        ]);
     }
 
     public function katalog()
@@ -69,7 +75,7 @@ class Home extends BaseController
     {
         $this->cart->remove($rowId);
 
-        return redirect()->to(base_url('cart'));
+        return redirect()->to(base_url('Keranjang'));
     }
 
     public function clear_cart()
@@ -80,7 +86,7 @@ class Home extends BaseController
         $_SESSION['diskon'] = 0;
         $_SESSION['id_diskon'] = null;
 
-        return redirect()->to(base_url('cart'));
+        return redirect()->to(base_url('Keranjang'));
     }
 
     public function update_cart()
@@ -103,11 +109,11 @@ class Home extends BaseController
         }
 
         if ($status == false) {
-            return redirect()->to(base_url('cart'))->with('type-status', 'error')
+            return redirect()->to(base_url('Keranjang'))->with('type-status', 'error')
                 ->with('message', 'Kuantitas produk melebihi stok');
         }
 
-        return redirect()->to(base_url('cart'))->with('type-status', 'success')
+        return redirect()->to(base_url('Keranjang'))->with('type-status', 'success')
             ->with('message', 'Berhasil diperbaruhi');
     }
 }

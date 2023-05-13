@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hadifa Gallery | Log in</title>
+  <title>Hadinafa Gallery | Log in</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
@@ -23,7 +23,7 @@
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="<?= base_url('/'); ?>"><b>Hadifa </b>Gallery</a>
+      <a href="<?= base_url('/'); ?>"><b>Hadinafa </b>Gallery</a>
     </div>
     <!-- /.login-logo -->
     <div class="card">

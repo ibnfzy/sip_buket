@@ -32,7 +32,12 @@ class CustController extends BaseController
 
     public function index()
     {
-        return view('user/dashboard');
+        return view('user/dashboard', [
+            'transaksi' => count($this->keranjang->where('id_customer', $_SESSION['id_customer'])->findAll()),
+            'proses' => count($this->keranjang->where('id_customer', $_SESSION['id_customer'])->where('status_bayar', 'Proses')->findAll()),
+            'status' => $this->userInformasi->where('id_customer', $_SESSION['id_customer'])->first(),
+            'kirim'  => count($this->keranjang->where('id_customer', $_SESSION['id_customer'])->where('status_bayar', 'Dalam Pengiriman')->findAll())
+        ]);
     }
 
     public function checkout()
@@ -44,12 +49,9 @@ class CustController extends BaseController
         $subtotal = $_SESSION['subtotal'];
         $getStatusPelanggan = $this->db->table('customer_informasi')->where('id_customer', $_SESSION['id_customer'])->get()->getRowArray();
         $getOngkir = $this->db->table('website_setting')->where('id_website_setting', '01')->get()->getRowArray();
-        $getPelanggan = $this->db->table('keranjang_beli')->where('id_customer', $_SESSION['id_customer'])->get()->getResultArray();
+        $getPelanggan = $this->db->table('keranjang_produk')->where('id_customer', $_SESSION['id_customer'])->get()->getResultArray();
         $getItem = $this->db->table('produk')->orderBy('rand()')->where('kategori_produk', $_SESSION['kategori'])->limit(1)->get()->getRowArray();
 
-        if ($getStatusPelanggan['status_customer'] == 'Customer Baru' && $getStatusPelanggan['kota_domisili'] == 'Makassar') {
-            $potonganOngkir = $getOngkir['biaya_ongkir'];
-        }
 
         if (isset($_SESSION['logged_in_pelanggan']) and $_SESSION['logged_in_pelanggan'] == TRUE) {
             $q = 0;
@@ -84,13 +86,13 @@ class CustController extends BaseController
             $dataKeranjang = [
                 'id_customer' => session()->get('id_customer'),
                 'rowid' => $rowid,
-                'total_produk' => $this->cart->totalItems(),
-                'total_bayar' => $subtotal - $potonganOngkir,
+                'total_items' => $this->cart->totalItems(),
+                'total_bayar' => $subtotal,
                 'status_bayar' => 'Menunggu Bukti Bayar',
                 'tgl_checkout' => date('Y-m-d'),
             ];
 
-            if ($getStatusPelanggan['status_customer'] == 'Customer+' && $this->cart->totalItems() > 1) {
+            if ($this->cart->totalItems() > 1) {
                 $data[] = [
                     'id_produk' => $getItem['id_produk'],
                     'id_customer' => $_SESSION['id_customer'],
@@ -173,10 +175,19 @@ class CustController extends BaseController
     public function informasi()
     {
         helper('form');
+        $option = [];
+        $w = 1;
+
+        foreach ($this->db->table('biaya_ongkir')->get()->getResultArray() as $item) {
+            $option[$item['nama_kota']] = $w . '. ' . $item['nama_kota'];
+            $w++;
+        }
+
         return view('user/informasi', [
             'title' => 'Informasi Pelanggan',
             'parentdir' => 'setting',
-            'data' => $this->userInformasi->where('id_customer', $_SESSION['id_customer'])->first()
+            'data' => $this->userInformasi->where('id_customer', $_SESSION['id_customer'])->first(),
+            'ongkir' => $option
         ]);
     }
 
@@ -197,6 +208,7 @@ class CustController extends BaseController
         $data = [
             'alamat' => $this->request->getPost('alamat'),
             'nomor_hp' => $this->request->getPost('nomor'),
+            'kota_domisili' => $this->request->getPost('kota'),
         ];
 
         $this->userInformasi->update($id, $data);
@@ -211,7 +223,9 @@ class CustController extends BaseController
             'status_bayar' => $this->request->getPost('status_bayar')
         ];
 
-        $this->keranjang->update($this->request->getPost('id_keranjang'), $data);
+        $this->db->table('customer_informasi')->where('id_customer', $_SESSION['id_customer'])->update(['status_customer' => 'Pelanggan']);
+
+        $this->keranjang->update($this->request->getPost('keranjang_produk'), $data);
 
         return $this->response->setJSON(['msg' => 'Berhasil merubah status bayar']);
     }

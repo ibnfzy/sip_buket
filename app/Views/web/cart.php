@@ -13,7 +13,7 @@
       <div class="col-md-12">
         <div class="cart-view-area">
           <div class="cart-view-table">
-            <form action="">
+            <form action="<?= base_url('update_cart'); ?>" method="post">
               <div class="table-responsive">
                 <table class="table">
                   <thead>
@@ -68,15 +68,11 @@
                 <tbody>
                   <tr>
                     <th>Subtotal</th>
-                    <td>Rp. <?= $subTotalx = array_sum($total); ?></td>
-                  </tr>
-                  <tr>
-                    <th>Total (+Pengiriman Rp. <?= $data['biaya_ongkir']; ?>)</th>
-                    <td>Rp. <?= $total = $subTotalx + $data['biaya_ongkir']; ?></td>
+                    <td>Rp. <?= $_SESSION['subtotal'] = array_sum($total); ?></td>
                   </tr>
                 </tbody>
               </table>
-              <a href="#" class="aa-cart-view-btn">Proses Checkout</a>
+              <a href="<?= base_url('CustomerPanel/checkout'); ?>" class="aa-cart-view-btn">Proses Checkout</a>
             </div>
           </div>
         </div>

@@ -89,8 +89,8 @@ function deleteData(a) {
     .then((willDelete) => {
       if (willDelete) {
         $.ajax({
-          method: "DELETE",
-          url: "Corousel/" + a,
+          method: "GET",
+          url: "CorouselDelete/" + a,
           success: function(response) {
             swal.fire("Data Telah Terhapus", {
               icon: "success",

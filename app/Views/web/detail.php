@@ -2,6 +2,32 @@
 
 <?= $this->section('content'); ?>
 
+<?php
+$db = \Config\Database::connect();
+$get = $db->table('penilaian')->where('id_produk', $data['id_produk'])->get()->getResultArray();
+$rt = [];
+
+foreach ($get as $item) {
+  $rt[] = $item['bintang'];
+}
+
+$nilai = array_sum($rt);
+$pbagi = count($rt);
+try {
+  $rating = $nilai / $pbagi;
+} catch (\Throwable $th) {
+  $rating = 0;
+}
+$nbulat = round($rating);
+$nbulat = ($nbulat > 5) ? 5 : $nbulat;
+?>
+
+<style>
+.gold {
+  color: #ff6600;
+}
+</style>
+
 <!-- catg header banner section -->
 
 <!-- / catg header banner section -->
@@ -33,13 +59,35 @@
                 <div class="aa-product-view-content">
                   <h3><?= $data['nama_produk']; ?></h3>
                   <div class="aa-price-block">
+                    <?php if ($nbulat == 1) : ?>
+                    <span class="fa fa-star gold"></span>
+                    <?php endif; ?>
+                    <?php if ($nbulat == 2) : ?>
+                    <span class="fa fa-star gold"></span>
+                    <span class="fa fa-star gold"></span>
+                    <?php endif; ?>
+                    <?php if ($nbulat == 3) : ?>
+                    <span class="fa fa-star gold"></span>
+                    <span class="fa fa-star gold"></span>
+                    <span class="fa fa-star gold"></span>
+                    <?php endif; ?>
+                    <?php if ($nbulat == 4) : ?>
+                    <span class="fa fa-star gold"></span>
+                    <span class="fa fa-star gold"></span>
+                    <span class="fa fa-star gold"></span>
+                    <span class="fa fa-star gold"></span>
+                    <?php endif; ?>
+                    <?php if ($nbulat == 5) : ?>
+                    <span class="fa fa-star gold"></span>
+                    <span class="fa fa-star gold"></span>
+                    <span class="fa fa-star gold"></span>
+                    <span class="fa fa-star gold"></span>
+                    <span class="fa fa-star gold"></span>
+                    <?php endif; ?> <br>
                     <span class="aa-product-view-price">Rp. <?= $data['harga_produk']; ?></span>
                     <p class="aa-product-avilability">Stok Produk: <span><?= $data['stok_produk']; ?></span></p>
-                  </div>
-                  <p>Transaksi pertama bagi Customer yang berdomisili Makassar akan mendapatkan <strong>Voucher Bebas
-                      Ongkir</strong>, bagi pelanggan yang telah mendapatkan status <strong>Customer+</strong> akan
-                    mendapatkan free item saat melakukan transaksi dengan pembelian lebih dari 1 produk</p>
 
+                  </div>
                   <div class="aa-prod-quantity">
 
                     <p class="aa-prod-category">
@@ -65,77 +113,41 @@
               <div class="tab-pane fade in active" id="description">
                 <p><?= $data['desc_produk']; ?></p>
               </div>
+
               <div class="tab-pane fade " id="review">
                 <div class="aa-product-review-area">
-                  <h4>2 Reviews for T-Shirt</h4>
-                  <ul class="aa-review-nav">
-                    <li>
-                      <div class="media">
-                        <div class="media-left">
-                          <a href="#">
-                            <img class="media-object" src="img/testimonial-img-3.jpg" alt="girl image">
-                          </a>
-                        </div>
-                        <div class="media-body">
-                          <h4 class="media-heading"><strong>Marla Jobs</strong> - <span>March 26, 2016</span></h4>
-                          <div class="aa-product-rating">
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star-o"></span>
-                          </div>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="media">
-                        <div class="media-left">
-                          <a href="#">
-                            <img class="media-object" src="img/testimonial-img-3.jpg" alt="girl image">
-                          </a>
-                        </div>
-                        <div class="media-body">
-                          <h4 class="media-heading"><strong>Marla Jobs</strong> - <span>March 26, 2016</span></h4>
-                          <div class="aa-product-rating">
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star-o"></span>
-                          </div>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                  <h4>Add a review</h4>
-                  <div class="aa-your-rating">
-                    <p>Your Rating</p>
-                    <a href="#"><span class="fa fa-star-o"></span></a>
-                    <a href="#"><span class="fa fa-star-o"></span></a>
-                    <a href="#"><span class="fa fa-star-o"></span></a>
-                    <a href="#"><span class="fa fa-star-o"></span></a>
-                    <a href="#"><span class="fa fa-star-o"></span></a>
-                  </div>
-                  <!-- review form -->
-                  <form action="" class="aa-review-form">
-                    <div class="form-group">
-                      <label for="message">Your Review</label>
-                      <textarea class="form-control" rows="3" id="message"></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label for="name">Name</label>
-                      <input type="text" class="form-control" id="name" placeholder="Name">
-                    </div>
-                    <div class="form-group">
-                      <label for="email">Email</label>
-                      <input type="email" class="form-control" id="email" placeholder="example@gmail.com">
-                    </div>
+                  <h4><?= $pbagi; ?> Review
+                  </h4>
 
-                    <button type="submit" class="btn btn-default aa-review-submit">Submit</button>
-                  </form>
+                  <ul class="aa-review-nav">
+
+                    <?php foreach ($get as $item) : ?>
+                    <?php $g = $db->table('customer')->where('id_customer', $item['id_customer'])->get()->getRowArray(); ?>
+                    <li>
+                      <div class="media">
+                        <div class="media-left">
+                          <a href="javascript::void">
+                            <span class="fa fa-user"></span>
+                          </a>
+                        </div>
+                        <div class="media-body">
+                          <h4 class="media-heading"><strong><?= $g['fullname']; ?></strong> -
+                            <span><?= $item['insert_datetime']; ?></span>
+                          </h4>
+                          <div class="aa-product-rating">
+                            <?php for ($i = 0; $i < $item['bintang']; $i++) : ?>
+                            <span class="fa fa-star"></span>
+                            <?php endfor; ?>
+                          </div>
+                          <p><?= $item['isi_penilaian']; ?></p>
+                        </div>
+                      </div>
+                    </li>
+
+                    <?php endforeach ?>
+
+                  </ul>
+
                 </div>
               </div>
             </div>

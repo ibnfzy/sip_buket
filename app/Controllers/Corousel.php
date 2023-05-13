@@ -51,7 +51,6 @@ class Corousel extends ResourceController
     {
         $rules = [
             'file' => 'is_image[file]|max_size[file,2048]',
-            'link' => 'required',
             'header' => 'required|min_length[5]|max_length[50]'
         ];
 
@@ -62,7 +61,7 @@ class Corousel extends ResourceController
 
         $data = [
             'gambar' => $this->request->getFile('file')->getName(),
-            'link_to' => $this->request->getPost('link'),
+            'link_to' => $this->request->getPost('link') ?? '',
             'header' => $this->request->getPost('header')
         ];
 
@@ -100,7 +99,6 @@ class Corousel extends ResourceController
         if ($this->request->getFile('file')->isValid()) {
             $rules = [
                 'file' => 'is_image[file]|max_size[file,2048]',
-                'link' => 'required',
                 'header' => 'required|min_length[5]|max_length[50]'
             ];
 
@@ -111,12 +109,11 @@ class Corousel extends ResourceController
             ];
         } else {
             $rules = [
-                'link' => 'required',
                 'header' => 'required|min_length[5]|max_length[50]'
             ];
 
             $data = [
-                'link_to' => $this->request->getPost('link'),
+                'link_to' => $this->request->getPost('link') ?? '',
                 'header' => $this->request->getPost('header')
             ];
         }

@@ -4,11 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hadifa Gallery</title>
+  <title>Hadinafa Gallery</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?= base_url(''); ?>/plugins/fontawesome-free/css/all.min.css">
   <script src="<?= base_url(''); ?>/swal/dist/sweetalert2.min.js"></script>
@@ -26,34 +25,34 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url(''); ?>/dist/css/adminlte.min.css">
   <style>
-  .dataTables_wrapper .dataTables_paginate .paginate_button.page-item.active .page-link {
-    z-index: 3;
-    color: #fff;
-    background-color: #e83e8c;
-    border-color: #e83e8c;
-  }
+    .dataTables_wrapper .dataTables_paginate .paginate_button.page-item.active .page-link {
+      z-index: 3;
+      color: #fff;
+      background-color: #e83e8c;
+      border-color: #e83e8c;
+    }
 
-  .page-link {
-    position: relative;
-    display: block;
-    padding: .5rem .75rem;
-    margin-left: -1px;
-    line-height: 1.25;
-    color: #e83e8c;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-  }
+    .page-link {
+      position: relative;
+      display: block;
+      padding: .5rem .75rem;
+      margin-left: -1px;
+      line-height: 1.25;
+      color: #e83e8c;
+      background-color: #fff;
+      border: 1px solid #dee2e6;
+    }
 
-  .dataTables_wrapper .dataTables_paginate .paginate_button:hover .page-link {
-    position: relative;
-    display: block;
-    padding: .5rem .75rem;
-    margin-left: -1px;
-    line-height: 1.25;
-    color: #e83e8c;
-    background-color: #fff;
-    border: 1px solid #e83e8c;
-  }
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover .page-link {
+      position: relative;
+      display: block;
+      padding: .5rem .75rem;
+      margin-left: -1px;
+      line-height: 1.25;
+      color: #e83e8c;
+      background-color: #fff;
+      border: 1px solid #e83e8c;
+    }
   </style>
 </head>
 
@@ -114,40 +113,40 @@
   <?= $this->renderSection('script'); ?>
 
   <script>
-  $(function() {
-    $(".datatablefull").DataTable({
-      "responsive": true,
-      "lengthChange": false,
-      "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('.datatableminimal').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
+    $(function() {
+      $(".datatablefull").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('.datatableminimal').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
     });
-  });
 
-  toastr.options = {
-    "closeButton": false,
-    "debug": false,
-    "newestOnTop": true,
-    "progressBar": true,
-    "positionClass": "toast-top-right",
-    "preventDuplicates": false,
-    "showDuration": "600",
-    "hideDuration": "1000",
-    "timeOut": "5000",
-    "extendedTimeOut": "1000",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
-  }
+    toastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": true,
+      "progressBar": true,
+      "positionClass": "toast-top-right",
+      "preventDuplicates": false,
+      "showDuration": "600",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
   </script>
 
   <?php ?>

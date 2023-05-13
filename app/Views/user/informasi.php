@@ -28,29 +28,21 @@
           </button>
         </div>
       </div>
-      <form action="<?= base_url('CustomerPanel/informasi/' . $_SESSION['id_customer']); ?>" method="post">
+      <form action="<?= base_url('CustomerPanel/informasi/' . $data['id_customer_detail']); ?>" method="post">
         <div class="card-body">
           <div class="form-group">
+            <label for="exampleInputEmail1">Kota</label>
+            <?= form_dropdown('kota', $ongkir, $data['kota_domisili'] ? $data['kota_domisili'] : '', [
+              'class' => 'form-control select2',
+            ]); ?>
+          </div>
+          <div class="form-group">
             <label for="exampleInputEmail1">Alamat</label>
-            <input type="text" name="alamat" id="nama" class="form-control" placeholder=""
-              value="<?= $data['alamat']; ?>">
+            <input type="text" name="alamat" id="nama" class="form-control" placeholder="" value="<?= $data['alamat']; ?>">
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Kontak (Nomor HP)</label>
-            <input type="text" name="nomor" id="nama" class="form-control" placeholder=""
-              value="<?= $data['nomor_hp']; ?>">
-          </div>
-          <div class="form-group">
-            <label>Kota Domisili</label>
-            <?php $opt = [
-              'Makassar' => 'Makassar',
-              'Maros' => 'Maros',
-              'Gowa' => 'Gowa',
-              'Barru' => 'Barru',
-            ] ?>
-            <?= form_dropdown('kota', $opt, $data['kota_domisili'], [
-              'class' => 'form-control select2'
-            ]); ?>
+            <input type="text" name="nomor" id="nama" class="form-control" placeholder="" value="<?= $data['nomor_hp']; ?>">
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
@@ -70,9 +62,9 @@
 <?= $this->section('script'); ?>
 
 <script>
-$('.select2').select2({
-  tags: true
-});
+  $('.select2').select2({
+    tags: true
+  });
 </script>
 
 <?= $this->endSection(); ?>

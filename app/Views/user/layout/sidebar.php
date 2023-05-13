@@ -1,7 +1,7 @@
 <aside class="main-sidebar elevation-4 sidebar-light-pink">
   <!-- Brand Logo -->
   <a href="<?= base_url('AdminPanel'); ?>" class="brand-link bg-pink">
-    <span class="brand-text font-weight-light">💐 <strong>Hadifa</strong> Gallery</span>
+    <span class="brand-text font-weight-light">💐 <strong>Hadinafa</strong> Gallery</span>
   </a>
 
   <!-- Sidebar -->
@@ -52,6 +52,12 @@
         <li class="nav-item mb-2">
           <a href="<?= base_url('CustomerPanel/informasi'); ?>" class="nav-link <?= $retVal = (url_is('CustomerPanel/informasi')) ? 'active' : ''  ?>"><i class="nav-icon fas fa-id-card"></i>
             <p>Informasi Customer</p>
+          </a>
+        </li>
+
+        <li class="nav-item mb-2">
+          <a href="<?= base_url('CustomerPanel/Review'); ?>" class="nav-link <?= $retVal = (url_is('CustomerPanel/Review')) ? 'active' : ''  ?>"><i class="nav-icon fas fa-edit"></i>
+            <p>Review</p>
           </a>
         </li>
 

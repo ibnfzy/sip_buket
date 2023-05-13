@@ -18,7 +18,7 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="#" role="button" title="LOGOUT">
+      <a class="nav-link" href="<?= base_url('Auth/Admin/Destroy'); ?>" role="button" title="LOGOUT">
         <i class="fas fa-sign-out-alt"></i>
       </a>
     </li>

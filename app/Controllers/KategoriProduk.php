@@ -44,7 +44,7 @@ class KategoriProduk extends ResourceController
         ];
 
         if (!$this->validate($rules)) {
-            return redirect()->to(base_url('AdminPanel/Kategori/new'))->with('type-status', 'error')
+            return redirect()->to(base_url('AdminPanel/KategoriProduk/new'))->with('type-status', 'error')
                 ->with('dataMessage', $this->validator->getErrors());
         }
 
@@ -54,7 +54,7 @@ class KategoriProduk extends ResourceController
 
         $this->kategoriModel->save($data);
 
-        return redirect()->to(base_url('AdminPanel/Kategori'))->with('type-status', 'info')
+        return redirect()->to(base_url('AdminPanel/KategoriProduk'))->with('type-status', 'info')
             ->with('message', 'Data berhasil ditambahkan');
     }
 
@@ -78,7 +78,7 @@ class KategoriProduk extends ResourceController
         ];
 
         if (!$this->validate($rules)) {
-            return redirect()->to(base_url('AdminPanel/Kategori/new'))->with('type-status', 'error')
+            return redirect()->to(base_url('AdminPanel/KategoriProduk/new'))->with('type-status', 'error')
                 ->with('dataMessage', $this->validator->getErrors());
         }
 
@@ -86,9 +86,9 @@ class KategoriProduk extends ResourceController
             'nama_kategori' => $this->request->getPost('kategori'),
         ];
 
-        $this->kategoriModel->save($data);
+        $this->kategoriModel->update($id, $data);
 
-        return redirect()->to(base_url('AdminPanel/Kategori'))->with('type-status', 'info')
+        return redirect()->to(base_url('AdminPanel/KategoriProduk'))->with('type-status', 'info')
             ->with('message', 'Data berhasil diperbarui');
     }
 
@@ -96,7 +96,7 @@ class KategoriProduk extends ResourceController
     {
         $this->kategoriModel->delete($id);
 
-        return redirect()->to(base_url('AdminPanel/Kategori'))->with('type-status', 'info')
+        return redirect()->to(base_url('AdminPanel/KategoriProduk'))->with('type-status', 'info')
             ->with('message', 'Data berhasil terhapus');
     }
 }

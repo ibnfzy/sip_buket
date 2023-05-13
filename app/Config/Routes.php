@@ -42,9 +42,9 @@ $routes->group('Auth', ['namespace' => 'App\Controllers'], static function ($rou
     $routes->get('Admin', 'AdminLogin::index');
     $routes->post('Admin', 'AdminLogin::auth');
     $routes->get('Admin/Destroy', 'AdminLogin::logout');
-    $routes->get('Pemilik', 'AdminLogin::index');
-    $routes->post('Pemilik', 'AdminLogin::auth');
-    $routes->get('Pemilik/Destroy', 'AdminLogin::logout');
+    $routes->get('Pemilik', 'PemilikLogin::index');
+    $routes->post('Pemilik', 'PemilikLogin::auth');
+    $routes->get('Pemilik/Destroy', 'PemilikLogin::logout');
     $routes->get('Customer', 'CustLogin::index');
     $routes->post('Customer', 'CustLogin::auth');
     $routes->get('Customer/Destroy', 'CustLogin::logout');
@@ -61,12 +61,29 @@ $routes->group('AdminPanel', ['namespace' => 'App\Controllers'], static function
     $routes->get('TransaksiCustomer', 'Transaksi::index');
     $routes->get('TransaksiCustomer/(:any)', 'Transaksi::show/$1');
     $routes->get('WebSetting', 'AdminController::setting/$1');
-    $routes->post('validasi_bukti_bayar/(:any)', 'Transaksi::validasi_bb/$1');
-    $routes->post('update_kirim/(:any)', 'Transaksi::update_kirim/$1');
+    $routes->get('validasi_bukti_bayar/(:any)', 'Transaksi::validasi_bb/$1');
+    $routes->get('update_kirim/(:any)', 'Transaksi::update_kirim/$1');
+    $routes->get('BiayaOngkir', 'AdminController::biaya_ongkir');
+    $routes->get('BiayaOngkir/new', 'AdminController::add_biaya_ongkir');
+    $routes->get('BiayaOngkir/(:num)', 'AdminController::delete_biaya_ongkir/$1');
+    $routes->get('ProdukDelete/(:any)', 'Produk::delete/$1');
+    $routes->get('KategoriProdukDelete/(:any)', 'KategoriProduk::delete/$1');
+    $routes->get('CustomerDelete/(:any)', 'Customer::delete/$1');
+    $routes->get('CorouselDelete/(:any)', 'Corousel::delete/$1');
 });
 
 $routes->group('PemilikPanel', ['namespace' => 'App\Controllers'], static function ($routes) {
     $routes->get('/', 'PemilikController::index');
+    $routes->get('LaporanProduk', 'PemilikController::laporanproduk');
+    $routes->post('PrintLaporanProduk', 'PemilikController::laporanprodukprint');
+    $routes->get('LaporanPenjualan', 'PemilikController::laporanpenjualan');
+    $routes->post('PrintLaporanPenjualan', 'PemilikController::laporanpenjualanprint');
+    $routes->get('LaporanPelanggan', 'PemilikController::laporanpelanggan');
+    $routes->post('PrintLaporanPelanggan', 'PemilikController::laporanpelangganprint');
+    $routes->get('WebSetting', 'PemilikController::setting');
+    $routes->post('WebSetting', 'PemilikController::setting_save');
+    $routes->resource('Admin');
+    $routes->get('AdminDelete/(:any)', 'Admin::delete/$1');
 });
 
 $routes->group('CustomerPanel', ['namespace' => 'App\Controllers'], static function ($routes) {
@@ -78,6 +95,8 @@ $routes->group('CustomerPanel', ['namespace' => 'App\Controllers'], static funct
     $routes->post('upload/(:any)', 'CustController::upload/$1');
     $routes->post('update-selesai', 'CustController::updateStatusSelesai');
     $routes->post('informasi/(:any)', 'CustController::update_informasi/$1');
+    $routes->resource('Review');
+    $routes->get('ReviewDelete/(:any)', 'Review::delete/$1');
 });
 
 /*
